@@ -19,6 +19,10 @@ class Modules
     #[ORM\Column(length: 255)]
     private ?string $Tajet = null;
 
+    #[ORM\ManyToOne(inversedBy: 'modules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categories $Categories = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class Modules
     public function setTajet(string $Tajet): self
     {
         $this->Tajet = $Tajet;
+
+        return $this;
+    }
+
+    public function getCategories(): ?Categories
+    {
+        return $this->Categories;
+    }
+
+    public function setCategories(?Categories $Categories): self
+    {
+        $this->Categories = $Categories;
 
         return $this;
     }
